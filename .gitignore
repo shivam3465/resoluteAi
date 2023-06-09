@@ -7,7 +7,7 @@
 ./src/apikeys.txt
 /1
 .env
-test.js
+./test.js
 
 # testing
 /coverage
