@@ -1,0 +1,43 @@
+.create-task{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-family: sans-serif,monospace;
+    width: 100%;
+    input,div{
+        margin: 0.8rem;
+        font-size: 1.2rem;
+        border-radius: 0.4rem;
+        padding: 0.3rem;
+        width: 30rem;
+        border: 1px solid rgb(182, 182, 182);
+    }
+    >div{
+        input{
+            margin: 0;
+        }
+        border: none;
+    }
+    #date{
+        width: 15rem;
+    }
+    button{
+        background-color: rgb(0, 0, 122);
+        border: 2px solid rgb(0, 0, 122);
+        color: white;
+        padding: 0.3rem 1rem;
+        &:hover{
+            background-color:transparent;
+            color: rgb(4, 4, 146);
+            border: 2px solid black;
+        }
+    }
+}
+@media screen and (max-width:366px) {
+    .create-task{
+        input,div{
+            width: 27rem;
+        }
+    }
+}
