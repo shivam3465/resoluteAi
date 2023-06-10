@@ -63,10 +63,10 @@ $color3: rgb(126, 255, 225);
     }
 }
 
-@media screen and (max-width:355px) {
+@media screen and (max-width:361px) {
     .header{
         padding: 0.2rem 0.4rem;
-        .left{
+        .left{            
             font-size: 1.8rem;
         }
         .right{
