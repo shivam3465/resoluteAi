@@ -57,18 +57,17 @@ export default function Home() {
     dispatch(setTask(newArr))    
   }
 
-  useEffect(() => {
-    if (!user) return <Navigate to={"/login"} />;
+  useEffect(() => {    
     const fetcher = async () => {
-      dispatch(setLoading(true));      
+      dispatch(setLoading(true));            
       const q=query(taskCollection,where("user","==",user))
       const data=await getDocs(q);      
       dispatch( setTask(data.docs.map((doc)=> ({id:doc.id,...doc.data()})) ));            
       dispatch(setLoading(false));
-      dispatch(setTaskAdded(false));
-    };
+      dispatch(setTaskAdded(false));    
+    };    
     fetcher();
-  }, [taskAdded]);
+  }, [taskAdded,user]);
   
   if (!user) return <Navigate to={"/login"} />;     
 
