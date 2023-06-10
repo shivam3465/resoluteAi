@@ -4,9 +4,8 @@ import { auth, db } from "../../firebase-config.js";
 import {
   collection,
   getDocs,
-  updateDoc,
-  deleteDoc,
-  doc,
+  query,
+  where,
 } from "firebase/firestore";
 import { Navigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,7 +14,6 @@ import { onAuthStateChanged } from "firebase/auth";
 import CreateTask from "../createTask/CreateTask";
 import Task from "../task/Task.jsx";
 import Loader from "../loader/Loader";
-import { ArrowDownward, ArrowUpwardOutlined } from "@mui/icons-material";
 
 export default function Home() {
   const taskCollection = collection(db, "tasks");
@@ -62,16 +60,17 @@ export default function Home() {
   useEffect(() => {
     if (!user) return <Navigate to={"/login"} />;
     const fetcher = async () => {
-      dispatch(setLoading(true));
-      const { docs } = await getDocs(taskCollection);      
-      dispatch(setTask(docs.map((doc) => ({ ...doc.data(), id: doc.id }))));
+      dispatch(setLoading(true));      
+      const q=query(taskCollection,where("user","==",user))
+      const data=await getDocs(q);      
+      dispatch( setTask(data.docs.map((doc)=> ({id:doc.id,...doc.data()})) ));            
       dispatch(setLoading(false));
       dispatch(setTaskAdded(false));
     };
     fetcher();
   }, [taskAdded]);
   
-  if (!user) return <Navigate to={"/login"} />;    
+  if (!user) return <Navigate to={"/login"} />;     
 
   return (
     <div className="home">

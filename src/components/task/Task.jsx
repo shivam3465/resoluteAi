@@ -12,8 +12,7 @@ export default function Task({ task }) {
   const update=async (id,isCompleted)=>{
     const task= doc(db,"tasks",id);
     dispatch(setLoading(true))
-    await updateDoc(task,{isCompleted:!isCompleted});    
-    // dispatch(setLoading(true))
+    await updateDoc(task,{isCompleted:!isCompleted});
     dispatch(setTaskAdded(true));
 }  
 const deleteTask=async (id)=>{

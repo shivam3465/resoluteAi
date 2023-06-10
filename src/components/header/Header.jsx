@@ -23,7 +23,7 @@ export default function Header() {
         <span>Todo</span> <span>App</span>
       </div>
       <div className="right">
-        <Link to={"/"}>Home</Link>
+        <Link to={"/"}>{user}</Link>
         {user && (
           <button to={"/logout"} onClick={logout}>
             Logout

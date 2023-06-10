@@ -3,7 +3,7 @@ import "./createTask.scss";
 import { db } from "../../firebase-config";
 import { addDoc, collection } from "firebase/firestore";
 import { toast } from "react-toastify";
-import { useDispatch} from "react-redux";
+import { useDispatch, useSelector} from "react-redux";
 import {  setTaskAdded } from "../../redux/user";
 
 export default function CreateTask() {
@@ -12,6 +12,7 @@ export default function CreateTask() {
   const [desc, setDesc] = useState("");
   const [date, setDate] = useState("");  
   const dispatch=useDispatch();
+  const {user}=useSelector((state=>state.userReducer));
 
   const createTask = async () => {
     await addDoc(taskCollection, {
@@ -19,14 +20,16 @@ export default function CreateTask() {
       desc: desc,
       dueDate: date,
       isCompleted: false,
+      user: user
     });
+    
     setDate("");
     setTitle("");
     setDesc("");
     dispatch(setTaskAdded(true));
     toast("task created successfully");
   };
-
+  
   return (
     <div className="create-task">
       <input

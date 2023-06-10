@@ -31,8 +31,8 @@ export default function Login() {
         curUser.email,
         curUser.password
         );
-        dispatch(setLoading(false));
-        toast("login successful");
+        toast("Login successful")
+        dispatch(setLoading(false));        
       } catch (error) {
         setError("Wrong email or password");
         dispatch(setLoading(false));
@@ -69,10 +69,10 @@ export default function Login() {
             Login
           </button>
           <div className="item">
-            Forgot Password ? , <Link to={"/forgot"}>Reset Now</Link>{" "}
+            Forgot Password ? , <Link to={"/forgot"}>Reset Now</Link>
           </div>
           <div className="item">
-            Don't have an account , <Link to={"/register"}>Register Now</Link>{" "}
+            Don't have an account , <Link to={"/register"}>Register Now</Link>
           </div>
         </form>
       )}

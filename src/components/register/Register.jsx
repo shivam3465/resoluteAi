@@ -31,14 +31,14 @@ export default function Register() {
         auth,
         curUser.email,
         curUser.password
-      );
+      );      
       dispatch(setLoading(false));
       toast("user registered successfully");    
     } catch (err) {
       dispatch(setLoading(false));
       setError("email already registered");
     }
-  };
+  };  
 
   if (user) return <Navigate to={"/"} />;
   return (
@@ -69,7 +69,7 @@ export default function Register() {
           />
           <button className="button" onClick={register} type="submit">Register</button>
           <div className="item">
-            Already have an account , <Link to={"/login"}>Login Now</Link>{" "}
+            Already have an account , <Link to={"/login"}>Login Now</Link>
           </div>
         </form>
       )}
