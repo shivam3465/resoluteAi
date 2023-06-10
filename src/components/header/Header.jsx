@@ -16,14 +16,14 @@ export default function Header() {
       toast(error.message);
     }
   };
-    
+
   return (
     <div className="header">
       <div className="left">
         <span>Todo</span> <span>App</span>
       </div>
       <div className="right">
-        <Link to={"/"}>{user}</Link>
+        <Link to={"/"}>{typeof(user)==="string" && user}</Link>
         {user && (
           <button to={"/logout"} onClick={logout}>
             Logout
